@@ -48,9 +48,9 @@ class FuelPriceAggregator:
                     "latitude": s.get("latitude"),
                 },
                 "prices": {
-                    "E10": s.get("unleadedPrice"),
-                    "E5": s.get("superUnleadedPrice"),
-                    "B7": s.get("dieselPrice"),
+                    "E10": s.get("E10"),
+                    "E5": s.get("E5"),
+                    "B7": s.get("B7"),
                 },
             })
         return result
