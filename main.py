@@ -5,7 +5,6 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 
 import requests
-import json
 
 app = FastAPI()
 
@@ -32,11 +31,11 @@ def return_esso_prices():
     r.raise_for_status()
     return r.json()
 
-@app.get("/prices/jet")
-def return_jet_prices():
-    r = requests.get("https://jetlocal.co.uk/fuel_prices_data.json")
-    r.raise_for_status()
-    return r.json()
+# @app.get("/prices/jet")
+# def return_jet_prices():
+#     r = requests.get("https://jetlocal.co.uk/fuel_prices_data.json")
+#     r.raise_for_status()
+#     return r.json()
 
 @app.get("/prices/morrisons")
 def return_morrisons_prices():
