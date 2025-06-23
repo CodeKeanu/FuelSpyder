@@ -47,8 +47,8 @@ Each endpoint returns the latest JSON data as provided by the retailer.
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/CodeKeanu/fuelspy.git
-    cd fuelspy
+    git clone https://github.com/CodeKeanu/fuelspyder.git
+    cd fuelspyder
     ```
 
 2. **Install dependencies:**
