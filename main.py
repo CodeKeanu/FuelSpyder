@@ -1,13 +1,31 @@
 from typing import Union
 
 from fastapi import FastAPI
-from fastapi.encoders import jsonable_encoder
-from fastapi.responses import JSONResponse
+from fastapi_utilities import repeat_every
 
 import requests
 
+import FuelPriceAggregator
+from contextlib import asynccontextmanager
+import asyncio
+
 app = FastAPI()
 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup: fetch prices every hour in the background
+
+    async def periodic_fetch():
+        global FuelPriceAggregator
+        while True:
+            FuelPriceAggregator = FuelPriceAggregator.fetch_all()
+            await asyncio.sleep(3600)
+
+    task = asyncio.create_task(periodic_fetch())
+    yield
+    task.cancel()
+
+app = FastAPI(lifespan=lifespan)
 
 @app.get("/")
 def read_root():
